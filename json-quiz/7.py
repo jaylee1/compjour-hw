@@ -62,7 +62,7 @@ zsecs = [z['properties']['time'] / 1000 for z in quakes]
 zsecs = sorted(zsecs, reverse = True)
 tsec = zsecs[5] 
 timeobj = time.gmtime(tsec)
-print('H.', time.strftime('%Y-%m-%d %H:%M', timeobj))
+print('H.', time.strftime('%A, %B %d', timeobj))
 
 
 
@@ -131,13 +131,17 @@ print('M.', basemap_url + '&' + markers_str)
 
 #Task N
 
-basemap_url = 'https://maps.googleapis.com/maps/api/staticmap?zoom=1&size=500x400'
-markers_str = 'markers=color:orange'
+orange = 'markers=color:orange'
+red = 'markers=color:red'
+
 for q in quakes:
     coords = q['geometry']['coordinates']
     lng = str(coords[0])
     lat = str(coords[1])
     s = '%7C' + lat + ',' + lng
-    markers_str += s
+    if q['properties']['mag'] >= 6:
+        red += s
+    else:
+        orange += s
 
-print('N.', basemap_url + '&' + markers_str) 
+print('N.', basemap_url + '&' + orange + '&' + red)

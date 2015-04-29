@@ -24,6 +24,13 @@ for a in accounts:
 
 print("B.", x)
 
+b_sum = 0
+for b in accounts:
+    if b['verified'] == True:
+        b_sum += 1
+
+print("C.", b_sum)
+
 #############
 ## Task D:
 counts = []
@@ -71,18 +78,13 @@ x = y[0]
 # x = max(accounts, key = itemgetter('followers_count'))
 print("F.", x['screen_name'], 'has', x['followers_count'], 'followers')
 
-# Task G:
-# test = []
-# for w in account:
-# 	test.append(w)
-# y = sorted(test, key = itemgetter('followers_count'), reverse = True)
-# x = y[0]
-# alternatively:
-# # x = max(accounts, key = itemgetter('followers_count'))
-# print("F.", x['screen_name'], 'has', x['followers_count'], 'followers')
-
-
-
+ver = []
+for b in accounts:
+    if b['verified'] == False:
+        ver.append(b)
+matrix = sorted(ver, key = itemgetter('statuses_count'), reverse = True)
+x = matrix[0]
+print("G.", x['screen_name'], 'has', x['statuses_count'], 'tweets')
 ###############
 ## Task H:
 totes = 0
